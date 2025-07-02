@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predicto - Login</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='assets/favicon.ico')}}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="logo-section">
+        <img
+          src="{{ url_for('static', filename='assets/logo-predicto-no-bg.png') }}"
+          alt="Predicto Logo"
+        />
+      </div>
+      <div class="form-section">
+        <h1>Welcome back!</h1>
+        <p class="register-text">
+          Belum punya akun?
+          <a href="{{url_for('register')}}" class="register-link">Register</a>
+        </p>
+
+        <div id="alert-container">
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %} {% for category, message in messages %}
+          <div
+            class="alert alert-{{ 'success' if category == 'success' else 'error' }}"
+            id="alert"
+          >
+            <span>{{ message }}</span>
+            <button class="alert-close" onclick="closeAlert()">&times;</button>
+          </div>
+          {% endfor %} {% endif %} {% endwith %}
+        </div>
+
+        <form action="{{ url_for('login') }}" method="POST" id="loginForm">
+          <div class="form-group">
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              placeholder="Username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <div class="password-container">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+                placeholder="Password"
+                required
+              />
+              <span class="toggle-password" onclick="togglePassword()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"
+                  ></path>
+                  <path
+                    d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"
+                  ></path>
+                  <path d="M14.12 14.12a3 3 0 0 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="forgot-password">
+            <a href="{{url_for('lupa_password')}}">Lupa Password?</a>
+          </div>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        const toggleIcon = document.querySelector(".toggle-password svg");
+
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleIcon.innerHTML =
+            '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+        } else {
+          passwordInput.type = "password";
+          toggleIcon.innerHTML =
+            '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+        }
+      }
+
+      function closeAlert() {
+        const alert = document.getElementById("alert");
+        if (alert) {
+          alert.classList.add("fade-out");
+          setTimeout(() => {
+            alert.remove();
+          }, 300);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const alert = document.getElementById("alert");
+        if (alert) {
+          setTimeout(() => {
+            closeAlert();
+          }, 5000);
+        }
+      });
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          const submitBtn = document.querySelector(".login-btn");
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Logging in...";
+
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Login";
+          }, 3000);
+        });
+    </script>
+  </body>
+</html>

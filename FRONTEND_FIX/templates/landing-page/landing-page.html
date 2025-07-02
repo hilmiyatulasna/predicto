@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predicto - Platform Prediksi Penjualan iPhone</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='assets/favicon.ico')}}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/landing-page.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="{{url_for('home')}}"
+            ><img
+              src="{{ url_for('static', filename='assets/logo-predicto-no-bg.png') }}"
+              alt="Predicto Logo"
+          /></a>
+        </div>
+        <div class="nav-links">
+          <a href="#" class="active">Home</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About</a>
+
+          <div class="mobile-auth-buttons">
+            <a href="{{url_for('login')}}" class="btn-secondary">Login</a>
+            <a href="{{url_for('register')}}" class="btn-primary">Register</a>
+          </div>
+        </div>
+        <div class="auth-buttons">
+          <a href="{{url_for('login')}}" class="btn-secondary">Login</a>
+          <a href="{{url_for('register')}}" class="btn-primary">Register</a>
+        </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Predicto.</h1>
+        <p class="hero-text">
+          Platform Kecerdasan Buatan Berbasis Website dengan Chatbot Interaktif
+          untuk Prediksi Penjualan pada Pasar iPhone di Indonesia.
+        </p>
+        <div class="hero-buttons">
+          <a href="{{url_for('register')}}" class="btn-primary">Register</a>
+          <a href="{{url_for('login')}}" class="btn-secondary">Login</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="container">
+        <h2 class="section-title">Features</h2>
+
+        <div class="feature-cards">
+          <div class="feature-card">
+            <div class="feature-image">
+              <img
+                src="{{ url_for('static', filename='assets/fitur1.png') }}"
+                alt="Prediksi Penjualan"
+              />
+            </div>
+            <h3>Prediksi Penjualan</h3>
+            <p>
+              Gunakan kecanggiahan AI untuk memprediksi tren penjualan iPhone
+              secara akurat berdasarkan data historis. Prediksi ini membantu
+              bisnis dalam mengambil keputusan.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-image">
+              <img
+                src="{{ url_for('static', filename='assets/fitur2.png') }}"
+                alt="Dashboard Interaktif"
+              />
+            </div>
+            <h3>Dashboard Interaktif</h3>
+            <p>
+              Pantau performa penjualan dengan dashboard real-time yang
+              intuitif. Visualisasi data yang dinamis memudahkan analisis tren,
+              perbandingan, dan pengambilan keputusan strategi dengan lebih
+              cepat dan akurat.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-image">
+              <img
+                src="{{ url_for('static', filename='assets/fitur3.png') }}"
+                alt="Chatbot"
+              />
+            </div>
+            <h3>Chatbot</h3>
+            <p>
+              Dapatkan jawaban instan melalui chatbot interaktif kami! Chatbot
+              membantu pengguna menjawab pertanyaan seputar penjualan dan
+              memberikan penjelasan mengenai website secara umum.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <h2 class="section-title">Pricing</h2>
+
+        <div class="pricing-cards">
+          <div class="pricing-card">
+            <h3 class="plan-name">Free</h3>
+            <div class="price">
+              <span class="currency">Rp</span>
+              <span class="amount">0</span>
+              <span class="period">/bln</span>
+            </div>
+            <ul class="features-list">
+              <li>Prediksi penjualan iPhone secara keseluruhan</li>
+              <li>Visualisasi tren penjualan melalui grafik interaktif</li>
+              <li>Akses chatbot versi ringan</li>
+              <li>Tanya chatbot (maks. 10 pertanyaan/hari)</li>
+            </ul>
+
+            <a href="#" class="btn-primary subscribe-btn">Langganan Sekarang</a>
+          </div>
+
+          <div class="pricing-card popular">
+            <div class="popular-badge">Paling Populer</div>
+            <h3 class="plan-name">Plus</h3>
+            <div class="price">
+              <span class="currency">Rp</span>
+              <span class="amount">150.000</span>
+              <span class="period">/bln</span>
+            </div>
+
+            <ul class="features-list">
+              <li>Semua fitur di free</li>
+              <li>Prediksi penjualan per tipe iPhone (13, 14, 15, SE, dst.)</li>
+              <li>Insight stok berdasarkan tipe iPhone melalui chatbot</li>
+              <li>Akses penuh ke dashboard analitik</li>
+              <li>Chatbot aktif (maks. 10 pertanyaan/hari)</li>
+            </ul>
+
+            <a href="#" class="btn-primary subscribe-btn">Langganan Sekarang</a>
+          </div>
+
+          <div class="pricing-card">
+            <h3 class="plan-name">Pro</h3>
+            <div class="price">
+              <span class="currency">Rp</span>
+              <span class="amount">250.000</span>
+              <span class="period">/bln</span>
+            </div>
+
+            <ul class="features-list">
+              <li>Semua fitur dari Plus</li>
+              <li>Chatbot tanpa batas - bebas tanya kapan aja</li>
+              <li>Rekomendasi stok otomatis berbasis AI</li>
+            </ul>
+
+            <a href="#" class="btn-primary subscribe-btn">Langganan Sekarang</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-logo">
+            <img
+              src="{{ url_for('static', filename='assets/logo-predicto-no-bg.png') }}"
+              alt="Predicto Logo"
+            />
+          </div>
+          <p class="about-text">
+            "Predicto adalah platform web berbasis kecerdasan buatan yang
+            menggabungkan teknologi Machine Learning dan chatbot interaktif
+            untuk membantu bisnis ritel memprediksi tren penjualan iPhone di
+            Indonesia. Dengan model time series forecasting, Predicto menyajikan
+            prediksi akurat guna mengoptimalkan strategi promosi dan mendukung
+            pengambilan keputusan berbasis data. Melalui chatbot yang ramah
+            pengguna, bahkan bagi yang non-teknis, platform ini memudahkan akses
+            terhadap wawasan bisnis, sehingga meningkatkan efisiensi operasional
+            dan profitabilitas melalui analisis data historis yang terstruktur
+            dan tepat sasaran."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="team">
+      <div class="container">
+        <h2 class="section-title">Our Team</h2>
+
+        <div class="team-cards">
+          <div class="team-card">
+            <div class="team-image">
+              <img
+                src="{{ url_for('static', filename='assets/hilmi.jpg') }}"
+                alt="Hilmiyatul Asna"
+              />
+            </div>
+            <h3>Hilmiyatul Asna</h3>
+            <p class="team-role">Machine Learning Engineer</p>
+            <div class="social-links">
+              <a
+                href="https://github.com/hilmiyatulasna"
+                target="_blank"
+                class="social-icon github"
+              >
+                <img
+                  src="{{ url_for('static', filename='assets/github.svg') }}"
+                  alt="GitHub"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/hilmiyatulasna/"
+                target="_blank"
+                class="social-icon linkedin"
+              >
+                <img
+                  src="{{ url_for('static', filename='assets/linkedin.svg') }}"
+                  alt="LinkedIn"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-image">
+              <img
+                src="{{ url_for('static', filename='assets/made.jpg') }}"
+                alt="Made Dharmagiri"
+              />
+            </div>
+            <h3>Made Dharmagiri</h3>
+            <p class="team-role">Frontend Developer</p>
+            <div class="social-links">
+              <a
+                href="https://github.com/madegiri"
+                target="_blank"
+                class="social-icon github"
+              >
+                <img
+                  src="{{ url_for('static', filename='assets/github.svg') }}"
+                  alt="GitHub"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/made-dharmagiri"
+                target="_blank"
+                class="social-icon linkedin"
+              >
+                <img
+                  src="{{ url_for('static', filename='assets/linkedin.svg') }}"
+                  alt="LinkedIn"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-image">
+              <img
+                src="{{ url_for('static', filename='assets/noufal.jpg') }}"
+                alt="Muhammad Irfan Noufal"
+              />
+            </div>
+            <h3>Muhammad Irfan Noufal</h3>
+            <p class="team-role">Backend Developer</p>
+            <div class="social-links">
+              <a
+                href="https://github.com/Erfin-FlyingCow"
+                target="_blank"
+                class="social-icon github"
+              >
+                <img
+                  src="{{ url_for('static', filename='assets/github.svg') }}"
+                  alt="GitHub"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/muhammad-irfan-noufal-388b312bb/"
+                target="_blank"
+                class="social-icon linkedin"
+              >
+                <img
+                  src="{{ url_for('static', filename='assets/linkedin.svg') }}"
+                  alt="LinkedIn"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-image">
+              <img
+                src="{{ url_for('static', filename='assets/syifa.jpg') }}"
+                alt="Syifa Azzahirah"
+              />
+            </div>
+            <h3>Syifa Azzahirah</h3>
+            <p class="team-role">Data Analyst</p>
+            <div class="social-links">
+              <a
+                href="https://github.com/syifaazhh"
+                target="_blank"
+                class="social-icon github"
+              >
+                <img
+                  src="{{ url_for('static', filename='assets/github.svg') }}"
+                  alt="GitHub"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/syifaazzahirah/"
+                target="_blank"
+                class="social-icon linkedin"
+              >
+                <img
+                  src="{{ url_for('static', filename='assets/linkedin.svg') }}"
+                  alt="LinkedIn"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4>Technology</h4>
+              <ul>
+                <li>Machine Learning</li>
+                <li>Time Series Forecasting</li>
+                <li>Flask Web</li>
+                <li>Chatbot Interaktif</li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h4>Contact Us</h4>
+              <ul>
+                <li>Predicto</li>
+                <li>Email: contact@predicto.com</li>
+                <li>Lokasi: Depok, Jawa Barat</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>&copy; 2025 Predicto. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        function highlightNavigation() {
+          let scrollY = window.pageYOffset;
+
+          sections.forEach((section) => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute("id");
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+              navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + sectionId) {
+                  link.classList.add("active");
+                }
+              });
+            }
+          });
+
+          if (scrollY < 100) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              if (link.getAttribute("href") === "#") {
+                link.classList.add("active");
+              }
+            });
+          }
+        }
+
+        window.addEventListener("scroll", highlightNavigation);
+        highlightNavigation();
+      });
+    </script>
+  </body>
+</html>

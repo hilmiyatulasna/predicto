@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predicto - Register</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='assets/favicon.ico')}}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/register.css')}}"
+    />
+  </head>
+  <body>
+    <div class="register-container">
+      <div class="logo-side">
+        <img
+          src="{{ url_for('static', filename='assets/logo-predicto-no-bg.png') }}"
+          alt="Predicto Logo"
+          class="logo"
+        />
+      </div>
+      <div class="form-side">
+        <div class="form-container">
+          <h1>Create an account</h1>
+          <p class="login-text">
+            Sudah punya akun? <a href="{{ url_for('login') }}">Login</a>
+          </p>
+
+          <div id="alert-container"></div>
+
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %} {% for category, message in messages %}
+          <div
+            class="alert alert-{{ 'error' if category == 'error' else 'success' if category == 'success' else 'info' }}"
+          >
+            <div class="alert-content">
+              <span>{{ message }}</span>
+            </div>
+            <button class="alert-close" onclick="this.parentElement.remove()">
+              &times;
+            </button>
+          </div>
+          {% endfor %} {% endif %} {% endwith %}
+
+          <form
+            method="POST"
+            action="{{ url_for('register') }}"
+            id="registerForm"
+          >
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              class="input-field"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              class="input-field"
+              required
+            />
+
+            <div class="password-container">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                class="input-field"
+                required
+              />
+              <span class="toggle-password" onclick="togglePassword()">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"
+                  ></path>
+                  <path
+                    d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"
+                  ></path>
+                  <path d="M14.12 14.12a3 3 0 0 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </span>
+            </div>
+
+            <button type="submit" class="register-button">
+              Create account
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        const toggleIcon = document.querySelector(".toggle-password svg");
+
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleIcon.innerHTML =
+            '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+        } else {
+          passwordInput.type = "password";
+          toggleIcon.innerHTML =
+            '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+        }
+      }
+
+      function showAlert(message, type = "info") {
+        const alertContainer = document.getElementById("alert-container");
+
+        const alert = document.createElement("div");
+        alert.className = `alert alert-${type}`;
+
+        alert.innerHTML = `
+          <div class="alert-content">
+            <span>${message}</span>
+          </div>
+          <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+        `;
+
+        alertContainer.appendChild(alert);
+
+        setTimeout(() => {
+          if (alert.parentElement) {
+            alert.remove();
+          }
+        }, 5000);
+      }
+
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (e) {
+          const password = document.getElementById("password").value;
+          const username = document.querySelector(
+            'input[name="username"]'
+          ).value;
+          const email = document.querySelector('input[name="email"]').value;
+
+          document.getElementById("alert-container").innerHTML = "";
+
+          if (password.length < 8) {
+            e.preventDefault();
+            showAlert(
+              "Password harus minimal 8 karakter dan mengandung huruf besar serta angka",
+              "error"
+            );
+            return;
+          }
+
+          if (!/(?=.*[A-Z])(?=.*\d)/.test(password)) {
+            e.preventDefault();
+            showAlert(
+              "Password harus mengandung minimal 1 huruf besar dan 1 angka",
+              "error"
+            );
+            return;
+          }
+
+          const submitBtn = document.querySelector(".register-button");
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = "Creating account...";
+          submitBtn.disabled = true;
+
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }, 3000);
+        });
+    </script>
+  </body>
+</html>
